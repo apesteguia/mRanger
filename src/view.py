@@ -45,6 +45,7 @@ class View:
                 self.render_main_window(title)
                 self.refresh_windows("hola")
 
+
     def cleanup(self):
         curses.endwin()
 
