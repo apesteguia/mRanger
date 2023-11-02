@@ -16,6 +16,16 @@ class FileTools:
 
     def get_current_dir(self):
         return self.current_dir
+
+    def change_directory(self, path):
+        try:
+            if os.path.exists(path) and os.path.isdir(path):
+                os.chdir(path)
+                self.current_dir = os.getcwd()
+            else:
+                raise FileNotFoundError(f"The specified directory '{path}' does not exist or is not a directory.")
+        except Exception as e:
+            raise e
     
     def get_file_contents(self, path: str):
         if not path:
@@ -28,6 +38,16 @@ class FileTools:
                 raise FileNotFoundError(f"The specified file '{path}' does not exist.")
         return self._file_content
             
+    def current_items(self):
+        if not self.current_dir:
+            self.dir_items = []
+        else:
+            if os.path.exists(self.current_dir) and os.path.isdir(self.current_dir):
+                self.dir_items = [item for item in os.listdir(self.current_dir)]
+            else:
+                raise FileNotFoundError(f"The specified directory '{self.current_dir}' does not exist or is not a directory.")
+        return self.dir_items
+
     def current_folders(self):
         if not self.current_dir:
             self.dir_items = []
