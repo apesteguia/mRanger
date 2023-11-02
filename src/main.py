@@ -3,6 +3,7 @@ from view import View
 import curses
 import curses.ascii
 
+
 def main(stdscr):
     f = FileTools("/home/mikel/Escritorio")
     title = f.get_current_dir()
@@ -39,6 +40,7 @@ def main(stdscr):
         else:
             view.listener(c, dirs)
             view.dirs_menu(dirs)
+
 
 if __name__ == "__main__":
     curses.wrapper(main)
